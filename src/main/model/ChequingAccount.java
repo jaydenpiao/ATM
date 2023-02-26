@@ -1,0 +1,49 @@
+package model;
+
+// Represents a Chequing Account with a name and balance and status
+public class ChequingAccount {
+    private String name; // name of owner
+    private double balance; // balance of account
+    private boolean isSuspended; // status of account
+
+    // REQUIRES: name must not be empty, balance >= 0
+    // EFFECTS: constructs a chequing account with name and balance and is not suspended
+    public ChequingAccount(String name, Double balance) {
+        // stub
+    }
+
+    public String getName() {
+        // stub
+    }
+
+    public Double getBalance() {
+        // stub
+    }
+
+    // EFFECTS: returns true if account is suspended, otherwise false
+    public Boolean isSuspended() {
+        // stub
+    }
+
+    // REQUIRES: given account is not already suspended and balance is 0
+    // MODIFIES: this
+    // EFFECTS: suspends the given account
+    public void suspend() {
+        // stub
+    }
+
+    // REQUIRES: amount > 0
+    // MODIFIES: this
+    // EFFECTS: adds amount to the balance of the account and returns new balance
+    public Double deposit(double amount) {
+        // stub
+    }
+
+    // REQUIRES: account balance >= amount >= 0
+    // MODIFIES: this
+    // EFFECTS: takes amount away from balance and returns new balance
+    public void withdraw(double amount) {
+        // stub
+    }
+
+}
