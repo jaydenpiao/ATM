@@ -109,7 +109,7 @@ public class ListOfSavingsAccountTest {
         savingAccounts.addAccount(account3);
         savingAccounts.addAccount(new SavingsAccount("Joe", 750.0, 1.05));
 
-        assertEquals(2369.7499, savingAccounts.addAllWithMonths(3));
+        assertEquals(2369.7499072812498, savingAccounts.addAllWithMonths(3));
         // 518.985352, 1076.89062, 773.873931
     }
 

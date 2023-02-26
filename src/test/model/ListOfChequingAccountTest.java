@@ -37,14 +37,14 @@ public class ListOfChequingAccountTest {
     }
 
     @Test
-    addOneAccountTest() {
+    void addOneAccountTest() {
         chequingAccounts.addAccount(account1);
         assertEquals(1, chequingAccounts.length());
         assertEquals(account1, chequingAccounts.getAccount(0));
     }
 
     @Test
-    addMultipleAccountsTest() {
+    void addMultipleAccountsTest() {
         chequingAccounts.addAccount(account1);
         chequingAccounts.addAccount(account2);
         chequingAccounts.addAccount(account3);
@@ -56,7 +56,7 @@ public class ListOfChequingAccountTest {
     }
 
     @Test
-    removeOneAccountTest() {
+    void removeOneAccountTest() {
         chequingAccounts.addAccount(account1);
         account1.suspend();
         chequingAccounts.removeAccount();
@@ -64,7 +64,7 @@ public class ListOfChequingAccountTest {
     }
 
     @Test
-    removeMultipleAccountsTest() {
+    void removeMultipleAccountsTest() {
         ChequingAccount account4 = new ChequingAccount("Joe", 0.0);
         ChequingAccount account5 = new ChequingAccount("Joe", 0.0);
         chequingAccounts.addAccount(account1);

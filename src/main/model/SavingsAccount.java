@@ -10,57 +10,69 @@ public class SavingsAccount {
     // REQUIRES: name is not empty, balance >= 0, interest > 0
     // EFFECTS: constructs a savings account w/ name, balance, interest, and is not suspended
     public SavingsAccount(String name, Double balance, Double interest) {
-        // stub
+        this.name = name;
+        this.balance = balance;
+        this.interest = interest;
+        this.isSuspended = false;
     }
 
     public String getName() {
-        // stub
+        return name;
     }
 
     public Double getBalance() {
-        // stub
+        return balance;
     }
 
     public Double getInterest() {
-        // stub
+        return interest;
     }
 
     // EFFECTS: returns true if account is suspended, otherwise false
     public Boolean isSuspended() {
-        // stub
+        return isSuspended;
     }
 
     // REQUIRES: given account is not already suspended and balance is 0
     // MODIFIES: this
     // EFFECTS: suspends the given account
     public void suspend() {
-        // stub
+        isSuspended = true;
     }
 
     // REQUIRES: amount >= 0
     // MODIFIES: this
     // EFFECTS: adds amount to the balance of the account and returns new balance
     public Double deposit(double amount) {
-        // stub
+        balance += amount;
+        return balance;
     }
 
     // REQUIRES: account balance >= amount >= 0
     // MODIFIES: this
     // EFFECTS: takes amount away from balance and returns new balance
-    public void withdraw(double amount) {
-        // stub
+    public Double withdraw(double amount) {
+        balance -= amount;
+        return balance;
     }
 
     // REQUIRES: months > 0
     // MODIFIES: this
     // EFFECTS: multiply current balance by interest rate then update balance and do this by the amount of months
     public Double gainInterest(int months) {
-        // stub
+        int i = 1;
+        //double total = 0.0;
+        while (i <= months) {
+            balance = balance * (1 + (interest * 0.01));
+            //total += balance;
+            i++;
+        }
+        //balance = total;
+        return balance;
 
         // balance= 100, interest = 2%, months = 3
         // month 1: 102 (100 x 1.02)
         // month 2: 104.04 (102 x 1.02)
         // month 3: 106.1208 (104.04 x 1.02)
     }
-
 }

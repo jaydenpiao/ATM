@@ -102,8 +102,8 @@ public class SavingsAccountTest {
         moneyAccount.gainInterest(1);
         assertEquals(513.75, moneyAccount.getBalance());
         moneyAccount.gainInterest(2);
-        assertEquals(542.394773, moneyAccount.getBalance());
+        assertEquals(542.3947734375001, moneyAccount.getBalance());
         moneyAccount.gainInterest(3);
-        assertEquals(588.384181, moneyAccount.getBalance());
+        assertEquals(588.3841805046342, moneyAccount.getBalance());
     }
 }

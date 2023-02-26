@@ -9,41 +9,45 @@ public class ChequingAccount {
     // REQUIRES: name must not be empty, balance >= 0
     // EFFECTS: constructs a chequing account with name and balance and is not suspended
     public ChequingAccount(String name, Double balance) {
-        // stub
+        this.name = name;
+        this.balance = balance;
+        this.isSuspended = false;
     }
 
     public String getName() {
-        // stub
+        return name;
     }
 
     public Double getBalance() {
-        // stub
+        return balance;
     }
 
     // EFFECTS: returns true if account is suspended, otherwise false
     public Boolean isSuspended() {
-        // stub
+        return isSuspended;
     }
 
     // REQUIRES: given account is not already suspended and balance is 0
     // MODIFIES: this
     // EFFECTS: suspends the given account
     public void suspend() {
-        // stub
+        isSuspended = true;
     }
 
     // REQUIRES: amount > 0
     // MODIFIES: this
     // EFFECTS: adds amount to the balance of the account and returns new balance
     public Double deposit(double amount) {
-        // stub
+        balance += amount;
+        return balance;
     }
 
     // REQUIRES: account balance >= amount >= 0
     // MODIFIES: this
     // EFFECTS: takes amount away from balance and returns new balance
-    public void withdraw(double amount) {
-        // stub
+    public Double withdraw(double amount) {
+        balance -= amount;
+        return balance;
     }
 
 }
