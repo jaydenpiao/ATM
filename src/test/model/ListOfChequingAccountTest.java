@@ -109,4 +109,13 @@ public class ListOfChequingAccountTest {
         chequingAccounts.addAccount(account1);
         assertFalse(chequingAccounts.isEmpty());
     }
+
+    @Test
+    void hasAccountTest() {
+        chequingAccounts.addAccount(account1);
+        chequingAccounts.addAccount(account2);
+        assertTrue(chequingAccounts.hasAccount(account1));
+        assertTrue(chequingAccounts.hasAccount(account2));
+        assertFalse(chequingAccounts.hasAccount(account3));
+    }
 }

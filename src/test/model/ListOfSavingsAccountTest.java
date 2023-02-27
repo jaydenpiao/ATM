@@ -120,4 +120,13 @@ public class ListOfSavingsAccountTest {
         savingAccounts.addAccount(account1);
         assertFalse(savingAccounts.isEmpty());
     }
+
+    @Test
+    void hasAccountTest() {
+        savingAccounts.addAccount(account1);
+        savingAccounts.addAccount(account2);
+        assertTrue(savingAccounts.hasAccount(account1));
+        assertTrue(savingAccounts.hasAccount(account2));
+        assertFalse(savingAccounts.hasAccount(account3));
+    }
 }

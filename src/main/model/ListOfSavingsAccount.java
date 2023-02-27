@@ -75,4 +75,13 @@ public class ListOfSavingsAccount {
             return false;
         }
     }
+
+    // EFFECTS: returns true if list contains the account, otherwise false
+    public boolean hasAccount(SavingsAccount sa) {
+        if (savingAccounts.contains(sa)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

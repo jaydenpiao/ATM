@@ -63,4 +63,13 @@ public class ListOfChequingAccount {
             return false;
         }
     }
+
+    // EFFECTS: returns true if list contains the account, otherwise false
+    public boolean hasAccount(ChequingAccount ca) {
+        if (chequingAccounts.contains(ca)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
