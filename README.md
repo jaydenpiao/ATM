@@ -32,3 +32,5 @@ list with my other bank accounts
 - As a user, I want to be able to deposit money into a bank account
 - As a user, I want to be able to withdraw money into a bank account
 - As a user, I want to be able to suspend/remove a bank account
+- As a user, I want to be able to save my bank accounts to file
+- As a user, I want to be able to be able to load my bank accounts from file
