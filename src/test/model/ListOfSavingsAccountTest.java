@@ -129,4 +129,13 @@ public class ListOfSavingsAccountTest {
         assertTrue(savingAccounts.hasAccount(account2));
         assertFalse(savingAccounts.hasAccount(account3));
     }
+
+    @Test
+    void hasAccountIndexTest() {
+        savingAccounts.addAccount(account1);
+        savingAccounts.addAccount(account2);
+        assertTrue(savingAccounts.hasAccount(0));
+        assertTrue(savingAccounts.hasAccount(1));
+        assertFalse(savingAccounts.hasAccount(2));
+    }
 }

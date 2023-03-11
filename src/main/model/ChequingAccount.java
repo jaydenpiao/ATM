@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a Chequing Account with a name and balance and status
-public class ChequingAccount {
+public class ChequingAccount implements Writable {
     private String name; // name of owner
     private double balance; // balance of account
     private boolean isSuspended; // status of account
@@ -48,6 +51,14 @@ public class ChequingAccount {
     public Double withdraw(double amount) {
         balance -= amount;
         return balance;
+    }
+
+    @Override
+    public JSONObject toJson() { // referred to jsondemo
+        JSONObject json = new JSONObject();
+        json.put("chequing name", name);
+        json.put("chequing balance", balance);
+        return json;
     }
 
 }

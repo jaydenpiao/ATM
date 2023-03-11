@@ -4,7 +4,11 @@ import model.ChequingAccount;
 import model.ListOfChequingAccount;
 import model.ListOfSavingsAccount;
 import model.SavingsAccount;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // ATM Machine Application with maximum of 3 chequing and 3 saving accounts
@@ -17,10 +21,16 @@ public class AtmMachine {
     private SavingsAccount sa3;
     private ListOfChequingAccount loca;
     private ListOfSavingsAccount losa;
+    private static final String CHEQ = "./data/chequing.json";
+    private static final String SAV = "./data/saving.json";
     private Scanner input;
+    private JsonWriter jsonWriterCheq;
+    private JsonReader jsonReaderCheq;
+    private JsonWriter jsonWriterSav;
+    private JsonReader jsonReaderSav;
 
     // EFFECTS: runs the ATM Machine
-    public AtmMachine() {
+    public AtmMachine() throws FileNotFoundException {
         runMachine();
     }
 
@@ -33,6 +43,10 @@ public class AtmMachine {
         losa = new ListOfSavingsAccount("Saving Accounts");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        jsonWriterCheq = new JsonWriter(CHEQ);
+        jsonReaderCheq = new JsonReader(CHEQ);
+        jsonWriterSav = new JsonWriter(SAV);
+        jsonReaderSav = new JsonReader(SAV);
 
         while (keepGoing) {
             displayMenu();
@@ -67,6 +81,10 @@ public class AtmMachine {
             removeCheq();
         } else if (command.equals("rs")) {
             removeSav();
+        } else if (command.equals("sa")) {
+            saveAccounts();
+        } else if (command.equals("la")) {
+            loadAccounts();
         } else {
             System.out.println("Selection not valid");
         }
@@ -83,6 +101,8 @@ public class AtmMachine {
         System.out.println("\taddt -> add all saving accounts with months");
         System.out.println("\trc -> remove suspended chequing accounts");
         System.out.println("\trs -> remove suspended saving accounts");
+        System.out.println("\tsa -> save accounts to file");
+        System.out.println("\tla -> load accounts from file");
         System.out.println("\tq -> quit");
     }
 
@@ -151,49 +171,55 @@ public class AtmMachine {
 
     // EFFECTS: displays chequing accounts
     private void displayChequing() {
-        if (loca.hasAccount(ca1)) {
-            //System.out.println("1 account is here");
-            System.out.printf("1. Name: " + ca1.getName() + " Balance: " + ca1.getBalance());
+        if (loca.hasAccount(loca.getAccount(0))) {
+            ChequingAccount ca = loca.getAccount(0);
+            System.out.printf("0. Name: " + ca.getName() + " Balance: " + ca.getBalance());
         }
-        if (loca.hasAccount(ca2)) {
-            System.out.printf("\n2. Name: " + ca2.getName() + " Balance: " + ca2.getBalance());
+        if (loca.hasAccount(loca.getAccount(1))) {
+            ChequingAccount ca = loca.getAccount(1);
+            System.out.printf("\n1. Name: " + ca.getName() + " Balance: " + ca.getBalance());
         }
-        if (loca.hasAccount(ca3)) {
-            System.out.printf("\n3. Name: " + ca3.getName() + " Balance: " + ca3.getBalance());
+        if (loca.hasAccount(2)) { // make hasAccount but take in index
+            ChequingAccount ca = loca.getAccount(2);
+            System.out.printf("\n2. Name: " + ca.getName() + " Balance: " + ca.getBalance());
         }
+
         System.out.println("\nWhich account would you like to access? *number*");
         int accOption = input.nextInt();
-        if (accOption == 1) {
-            cheqAccOptions(ca1);
-        } else if (accOption == 2) {
-            cheqAccOptions(ca2);
+        if (accOption == 0) {
+            cheqAccOptions(loca.getAccount(0));
+        } else if (accOption == 1) {
+            cheqAccOptions(loca.getAccount(1));
         } else {
-            cheqAccOptions(ca3);
+            cheqAccOptions(loca.getAccount(2));
         }
     }
 
     // EFFECTS: displays saving accounts
     private void displaySaving() {
-        if (losa.hasAccount(sa1)) {
-            System.out.printf("1. Name: " + sa1.getName() + " Balance: " + sa1.getBalance() + " Interest Rate: "
-                    + sa1.getInterest());
+        if (losa.hasAccount(losa.getAccount(0))) {
+            SavingsAccount sa = losa.getAccount(0);
+            System.out.printf("0. Name: " + sa.getName() + " Balance: " + sa.getBalance() + " Interest Rate: "
+                    + sa.getInterest());
         }
-        if (losa.hasAccount(sa2)) {
-            System.out.printf("\n2. Name: " + sa2.getName() + " Balance: " + sa2.getBalance() + " Interest Rate: "
-                    + sa2.getInterest());
+        if (losa.hasAccount(losa.getAccount(1))) {
+            SavingsAccount sa = losa.getAccount(1);
+            System.out.printf("\n1. Name: " + sa.getName() + " Balance: " + sa.getBalance() + " Interest Rate: "
+                    + sa.getInterest());
         }
-        if (losa.hasAccount(sa3)) {
-            System.out.printf("\n3. Name: " + sa3.getName() + " Balance: " + sa3.getBalance() + " Interest Rate: "
-                    + sa3.getInterest());
+        if (losa.hasAccount(2)) { // make hasAccount but take in index
+            SavingsAccount sa = losa.getAccount(2);
+            System.out.printf("\n2. Name: " + sa.getName() + " Balance: " + sa.getBalance());
         }
+
         System.out.println("\nWhich account would you like to access? *number*");
         int accOption = input.nextInt();
-        if (accOption == 1) {
-            savAccOptions(sa1);
-        } else if (accOption == 2) {
-            savAccOptions(sa2);
+        if (accOption == 0) {
+            savAccOptions(losa.getAccount(0));
+        } else if (accOption == 1) {
+            savAccOptions(losa.getAccount(1));
         } else {
-            savAccOptions(sa3);
+            savAccOptions(losa.getAccount(2));
         }
     }
 
@@ -324,6 +350,33 @@ public class AtmMachine {
     // EFFECTS: prints balance of account
     private void printBalanceSav(SavingsAccount sa) {
         System.out.printf("Balance: $%.2f\n", sa.getBalance());
+    }
+
+    // EFFECTS: saves accounts to file
+    private void saveAccounts() { // referred to jsondemo
+        try {
+            jsonWriterCheq.open();;
+            jsonWriterCheq.writeChequing(loca);
+            jsonWriterCheq.close();
+            jsonWriterSav.open();;
+            jsonWriterSav.writeSaving(losa);
+            jsonWriterSav.close();
+            System.out.println("Saved");
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads accounts from file
+    private void loadAccounts() {
+        try {
+            loca = jsonReaderCheq.readCheq();
+            losa = jsonReaderSav.readSav();
+            System.out.println("Loaded accounts");
+        } catch (IOException e) {
+            System.out.println("Unable to read from file");
+        }
     }
 }
 

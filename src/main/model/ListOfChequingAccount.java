@@ -1,10 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 // Represents a list of Chequing Accounts with a name
-public class ListOfChequingAccount {
+public class ListOfChequingAccount implements Writable {
     private String name; // name of owner
     private List<ChequingAccount> chequingAccounts; // list of chequing accounts
 
@@ -71,5 +76,38 @@ public class ListOfChequingAccount {
         } else {
             return false;
         }
+    }
+
+    // EFFECTS: returns true if list contains the account with index, otherwise false
+    public boolean hasAccount(int index) {
+        if (chequingAccounts.size() > index) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // EFFECTS: returns an unmodifiable list of accounts in this list // make tests
+    public List<ChequingAccount> getChequingAccounts() {
+        return Collections.unmodifiableList(chequingAccounts);
+    }
+
+    @Override
+    public JSONObject toJson() { // referred to jsondemo
+        JSONObject json = new JSONObject();
+        json.put("name of chequing accounts", name);
+        json.put("chequing accounts", accountsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns accounts in this list as a JSON array
+    private JSONArray accountsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (ChequingAccount ca : chequingAccounts) {
+            jsonArray.put(ca.toJson());
+        }
+
+        return jsonArray;
     }
 }

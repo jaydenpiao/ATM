@@ -118,4 +118,13 @@ public class ListOfChequingAccountTest {
         assertTrue(chequingAccounts.hasAccount(account2));
         assertFalse(chequingAccounts.hasAccount(account3));
     }
+
+    @Test
+    void hasAccountIndexTest() {
+        chequingAccounts.addAccount(account1);
+        chequingAccounts.addAccount(account2);
+        assertTrue(chequingAccounts.hasAccount(0));
+        assertTrue(chequingAccounts.hasAccount(1));
+        assertFalse(chequingAccounts.hasAccount(2));
+    }
 }

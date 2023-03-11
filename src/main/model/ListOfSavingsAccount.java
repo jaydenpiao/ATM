@@ -1,10 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 // Represents a list of Savings Accounts with a name
-public class ListOfSavingsAccount {
+public class ListOfSavingsAccount implements Writable {
     private String name; // name of owner
     private List<SavingsAccount> savingAccounts; // list of saving accounts
 
@@ -83,5 +88,38 @@ public class ListOfSavingsAccount {
         } else {
             return false;
         }
+    }
+
+    // EFFECTS: returns true if list contains the account with index, otherwise false
+    public boolean hasAccount(int index) {
+        if (savingAccounts.size() > index) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // EFFECTS: returns an unmodifiable list of accounts in this list // make tests
+    public List<SavingsAccount> getSavingAccounts() {
+        return Collections.unmodifiableList(savingAccounts);
+    }
+
+    @Override
+    public JSONObject toJson() { // referred to jsondemo
+        JSONObject json = new JSONObject();
+        json.put("name of saving accounts", name);
+        json.put("saving accounts", accountsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns accounts in this list as a JSON array
+    private JSONArray accountsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (SavingsAccount sa : savingAccounts) {
+            jsonArray.put(sa.toJson());
+        }
+
+        return jsonArray;
     }
 }

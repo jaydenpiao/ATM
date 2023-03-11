@@ -1,0 +1,15 @@
+{
+    "saving accounts": [
+        {
+            "savings name": "jennifer",
+            "savings interest": 2.5,
+            "savings balance": 200
+        },
+        {
+            "savings name": "jay",
+            "savings interest": 5.5,
+            "savings balance": 600
+        }
+    ],
+    "name of saving accounts": "Saving Accounts"
+}

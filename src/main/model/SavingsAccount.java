@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a Savings Account with a name, balance, interest rate, and status
-public class SavingsAccount {
+public class SavingsAccount implements Writable {
     private String name; // name of owner
     private double balance; // balance of account
     private double interest; // monthly interest rate of account in percentage
@@ -74,5 +77,14 @@ public class SavingsAccount {
         // month 1: 102 (100 x 1.02)
         // month 2: 104.04 (102 x 1.02)
         // month 3: 106.1208 (104.04 x 1.02)
+    }
+
+    @Override
+    public JSONObject toJson() { // referred to jsondemo
+        JSONObject json = new JSONObject();
+        json.put("savings name", name);
+        json.put("savings balance", balance);
+        json.put("savings interest", interest);
+        return json;
     }
 }
