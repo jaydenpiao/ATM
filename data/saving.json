@@ -1,14 +1,19 @@
 {
     "saving accounts": [
         {
-            "savings name": "jennifer",
+            "savings name": "jay",
             "savings interest": 2.5,
-            "savings balance": 200
+            "savings balance": 500
         },
         {
-            "savings name": "jay",
-            "savings interest": 5.5,
+            "savings name": "oval",
+            "savings interest": 6.5,
             "savings balance": 600
+        },
+        {
+            "savings name": "a",
+            "savings interest": 4.5,
+            "savings balance": 700
         }
     ],
     "name of saving accounts": "Saving Accounts"

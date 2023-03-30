@@ -1,17 +1,4 @@
 {
-    "name of chequing accounts": "Chequing Accounts",
-    "chequing accounts": [
-        {
-            "chequing name": "joe",
-            "chequing balance": 500
-        },
-        {
-            "chequing name": "evan",
-            "chequing balance": 0
-        },
-        {
-            "chequing name": "jayden",
-            "chequing balance": 1900
-        }
-    ]
+    "name of chequing accounts": "Accounts",
+    "chequing accounts": []
 }

@@ -379,4 +379,3 @@ public class AtmMachine {
         }
     }
 }
-

@@ -34,3 +34,26 @@ list with my other bank accounts
 - As a user, I want to be able to suspend/remove a bank account
 - As a user, I want to be able to save my bank accounts to file
 - As a user, I want to be able to be able to load my bank accounts from file
+
+## Instructions for Grader
+**Adding an account to the list**
+- You can generate the first required action related to adding Xs to a Y by:
+- Typing a name into the name field
+- Typing a balance into the balance field
+- Press the "Add Account" button
+
+**Removing an account from the list**
+- You can generate the second required action by:
+- Select an account from the list
+- Then press the "Remove Account" button
+
+**Visual Component**
+- When the "Add Account" button is pressed, a smile image appears
+- When the "Remove Account" button is pressed, a frown image appears
+
+**Saving the Accounts**
+- Press the "Save Accounts" button to save the accounts in the list
+
+**Loading the Accounts**
+- Press the "Load Accounts" button to load the accounts you saved
+- 
