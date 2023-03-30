@@ -82,4 +82,14 @@ public class ChequingAccountTest {
         moneyAccount.withdraw(400.0);
         assertEquals(0.0, moneyAccount.getBalance());
     }
+
+    @Test
+    void toStringTest() {
+        assertEquals("Joe - $0.00", zeroAccount.toString());
+        assertEquals("Jen - $500.00", moneyAccount.toString());
+        ChequingAccount ca1 = new ChequingAccount("Evan", 678.494);
+        ChequingAccount ca2 = new ChequingAccount("Oliver", 678.495);
+        assertEquals("Evan - $678.49", ca1.toString());
+        assertEquals("Oliver - $678.50", ca2.toString());
+    }
 }
