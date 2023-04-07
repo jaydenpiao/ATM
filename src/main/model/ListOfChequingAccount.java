@@ -34,6 +34,7 @@ public class ListOfChequingAccount implements Writable {
     // MODIFIES: this
     // EFFECTS: adds an account to the end of list of chequing accounts and returns updated list
     public List<ChequingAccount> addAccount(ChequingAccount account) {
+        EventLog.getInstance().logEvent(new Event("Added account: " + account.getName()));
         chequingAccounts.add(account);
         return chequingAccounts;
     }
@@ -43,6 +44,15 @@ public class ListOfChequingAccount implements Writable {
     // EFFECTS: removes every account that is suspended in the list then returns the updated list
     public List<ChequingAccount> removeAccount() {
         chequingAccounts.removeIf(account -> account.isSuspended());
+        return chequingAccounts;
+    }
+
+    // REQUIRES: ca must be in list
+    // MODIFIES: this
+    // EFFECTS: removes ca from chequing accounts
+    public List<ChequingAccount> removeAccountSpecific(ChequingAccount ca) {
+        EventLog.getInstance().logEvent((new Event("Removed account: " + ca.getName())));
+        chequingAccounts.remove(ca);
         return chequingAccounts;
     }
 

@@ -1,4 +1,7 @@
 {
     "name of chequing accounts": "Accounts",
-    "chequing accounts": []
+    "chequing accounts": [{
+        "chequing name": "jayden",
+        "chequing balance": 500
+    }]
 }

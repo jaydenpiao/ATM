@@ -44,8 +44,9 @@ public class Event {
             return false;
         }
 
-        if (other.getClass() != this.getClass())
+        if (other.getClass() != this.getClass()) {
             return false;
+        }
 
         Event otherEvent = (Event) other;
 

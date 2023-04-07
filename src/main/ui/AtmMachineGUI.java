@@ -1,6 +1,8 @@
 package ui;
 
 import model.ChequingAccount;
+import model.Event;
+import model.EventLog;
 import model.ListOfChequingAccount;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -11,6 +13,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,6 +31,7 @@ public class AtmMachineGUI extends JFrame implements ActionListener, ListSelecti
     private ArrayList<ChequingAccount> accounts;
     private DefaultListModel<String> accountModel;
     private GridBagConstraints gb;
+    private ListOfChequingAccount chequingAccounts;
 
     private JButton saveButton;
     private JButton loadButton;
@@ -50,6 +55,16 @@ public class AtmMachineGUI extends JFrame implements ActionListener, ListSelecti
         layoutGUI();
         setButtons(addButton, removeButton, saveButton, loadButton); // todo
         setGUI();
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event el : EventLog.getInstance()) {
+                    System.out.println(el.getDescription());
+                }
+                System.exit(0);
+            }
+        });
     }
 
     // EFFECTS: initializes the fields of the application
@@ -63,6 +78,7 @@ public class AtmMachineGUI extends JFrame implements ActionListener, ListSelecti
         saveButton = new JButton("Save Accounts");
         loadButton = new JButton("Load Accounts");
         accountModel = new DefaultListModel<>();
+        chequingAccounts = new ListOfChequingAccount("Accounts");
         accountList = new JList<>(accountModel);
         accountList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         accountList.addListSelectionListener(this);
@@ -214,6 +230,7 @@ public class AtmMachineGUI extends JFrame implements ActionListener, ListSelecti
         String name = nameField.getText();
         double balance = Double.parseDouble(balanceField.getText());
         ChequingAccount account = new ChequingAccount(name, balance);
+        chequingAccounts.addAccount(account);
         accounts.add(account);
         accountModel.addElement(account.toString());
         nameField.setText("");
@@ -224,6 +241,8 @@ public class AtmMachineGUI extends JFrame implements ActionListener, ListSelecti
     // EFFECTS: removes account and takes it off gui
     public void removeFunction() {
         int index = accountList.getSelectedIndex();
+        ChequingAccount ca = accounts.get(index);
+        chequingAccounts.removeAccountSpecific(ca);
         accounts.remove(index);
         accountModel.removeElementAt(index);
     }
