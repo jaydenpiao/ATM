@@ -56,4 +56,12 @@ list with my other bank accounts
 
 **Loading the Accounts**
 - Press the "Load Accounts" button to load the accounts you saved
-- 
+
+## Phase 4: Task 2
+Added account: Jayden  
+Added account: Joe  
+Removed account: Jayden  
+Added account: Evan  
+Added account: Olive  
+Removed account: Joe  
+Removed account: Olive
