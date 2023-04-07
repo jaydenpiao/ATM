@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ListOfChequingAccountTest {
@@ -126,5 +128,19 @@ public class ListOfChequingAccountTest {
         assertTrue(chequingAccounts.hasAccount(0));
         assertTrue(chequingAccounts.hasAccount(1));
         assertFalse(chequingAccounts.hasAccount(2));
+    }
+
+    @Test
+    void removeAccountSpecificTest() {
+        chequingAccounts.addAccount(account1);
+        chequingAccounts.addAccount(account2);
+        chequingAccounts.addAccount(account3);
+        chequingAccounts.removeAccountSpecific(account1);
+        assertFalse(chequingAccounts.hasAccount(account1));
+        assertTrue(chequingAccounts.hasAccount(account2));
+        assertTrue(chequingAccounts.hasAccount(account3));
+        chequingAccounts.removeAccountSpecific(account2);
+        assertFalse(chequingAccounts.hasAccount(account2));
+        assertTrue(chequingAccounts.hasAccount(account3));
     }
 }
