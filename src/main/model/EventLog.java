@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * Represents a log of alarm system events.
+ * Represents a log of ATM Machine events.
  * We use the Singleton Design Pattern to ensure that there is only
  * one EventLog in the system and that the system has global access
  * to the single instance of the EventLog.
@@ -44,13 +44,13 @@ public class EventLog implements Iterable<Event> {
         events.add(e);
     }
 
-    /**
-     * Clears the event log and logs the event.
-     */
-    public void clear() {
-        events.clear();
-        logEvent(new Event("Event log cleared."));
-    }
+//    /**
+//     * Clears the event log and logs the event.
+//     */
+//    public void clear() {
+//        events.clear();
+//        logEvent(new Event("Event log cleared."));
+//    }
 
     @Override
     public Iterator<Event> iterator() {
