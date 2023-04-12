@@ -65,3 +65,34 @@ Added account: Evan
 Added account: Olive  
 Removed account: Joe  
 Removed account: Olive
+
+## Phase 4: Task 3
+The design of my UML class diagram is definitely not ideal and not very organized. I 
+will be honest, my design was not very good. There are a lot of different ways that I 
+could refactor this project to improve the design. One very obvious thing is that the 
+ChequingAccount and SavingsAccount class are very similar. There are basically identical 
+apart from names. I would imagine I could have created an abstract class that both 
+ChequingAccount and SavingsAccount could extend since most methods are similar. Also, 
+that abstract class could even implement an interface that holds those methods that are 
+implemented differently in each class. Similarly, for the ListOfChequingAccount and 
+ListOfSavingsAccount classes could also extend a single abstract class. This abstract 
+class would hold everything that is similar in the two classes because there is a 
+substantial amount of similarity and duplication between the two classes.
+
+Another form of refactoring that I could have done would be with the AtmMachine class 
+in the ui package. Currently, the class has an association with every class in my model 
+and my persistence package. This could be prone to many errors and bugs. If I were to change 
+one thing anywhere, there is a possibility of bugs popping up in many other classes. As a 
+result, this would not be a very systematic approach. Also, it doesn't look very nice inside 
+AtmMachine because there are so many different fields and many are duplicated. I could have 
+created another concrete class or classes that AtmMachine can inherit. For example, I could 
+have left the associations to ChequingAccount and SavingsAccount to be in a different class 
+that AtmMachine could extend. With that, I would only need one association to 
+ListOfChequingAccount and ListOfSavingsAccount that would with the extended class. Also, 
+with how it is currently, there is a lot of duplication in the code that could be reduced 
+quite easily. Same thing with the two associations to JsonReader and JsonWriter. There is 
+a lot of duplication relating to the methods that use those private fields. I could have 
+created a concrete or abstract class that AtmMachine extends to reduce a lot of this 
+duplication. With all of this refactoring, this project would be easier to work on in the 
+future and is prone to less bugs with future changes. Also, the readability of the code 
+would be much simpler. 
