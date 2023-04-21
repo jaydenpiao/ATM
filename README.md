@@ -6,7 +6,7 @@ be able to
 - Create an **account**
 - **Suspend** an account
 - Have multiple **account types** such as chequing and savings
-- **Deposit** money into an account they choose
+- **Deposit** money into an account they choose 
 - **Withdraw** money from an account
 
 ## Who Will Use It?
