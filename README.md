@@ -57,7 +57,7 @@ list with my other bank accounts
 **Loading the Accounts**
 - Press the "Load Accounts" button to load the accounts you saved
 
-## Phase 4: Task 2
+## Sample of the Events that Occur when Run
 Added account: Jayden  
 Added account: Joe  
 Removed account: Jayden  
@@ -66,7 +66,7 @@ Added account: Olive
 Removed account: Joe  
 Removed account: Olive
 
-## Phase 4: Task 3
+## Refactoring
 The design of my UML class diagram is definitely not ideal and not very organized. I 
 will be honest, my design was not very good. There are a lot of different ways that I 
 could refactor this project to improve the design. One very obvious thing is that the 
